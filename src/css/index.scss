@@ -3,6 +3,29 @@ $important0: #fbb3b3;
 $important1: #fce9a7;
 $important2: #b3e6fb;
 
+@font-face {
+    font-family: 'Roboto light';
+    src: url('../fonts/roboto-light.woff2') format('woff2'),
+        url('../fonts/roboto-light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto light italic';
+    src: url('../fonts/roboto-lightitalic.woff2') format('woff2'),
+        url('../fonts/roboto-lightitalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+// Bold, but like only in comparison with light
+@font-face {
+    font-family: 'Roboto medium';
+    src: url('../fonts/roboto-medium.woff2') format('woff2'),
+        url('../fonts/roboto-medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {height: 100%;}
 
 body {
@@ -10,7 +33,8 @@ body {
     // So the footer is pushed to the bottom of the page
     display: flex;
     flex-direction: column;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-display: swap;
+    font-family: 'Roboto light',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     font-size: 2em;
     max-width: 22em;
     margin: 0 auto;
