@@ -1,0 +1,189 @@
+$bodytext: #232323;
+$important0: #fbb3b3;
+$important1: #fce9a7;
+$important2: #b3e6fb;
+
+html, body {height: 100%;}
+
+body {
+    background: #fafafa;
+    // So the footer is pushed to the bottom of the page
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 2em;
+    max-width: 22em;
+    margin: 0 auto;
+}
+input {font-family: inherit;}
+
+*, *:before, *:after {box-sizing: border-box;}
+
+// Main container for the to do app
+.app {
+    border-bottom: solid .4em $bodytext;
+    border-top:    solid .4em $bodytext;
+    margin: 0 0 auto;
+    flex-grow: 1;
+    padding: 1.7em 0;
+}
+
+// "Storm ID", bottom. Not sure if this needs a class or not.
+// Depends upon how complicated the app will be.
+footer {
+    flex-grow: 0;
+    font-size: .65em;
+    padding: 1em 0;
+}
+
+
+// The list items sit within these classes
+[class^="importance"],
+[class*="importance"] {
+    border-left: solid .2em $bodytext;
+}
+// Needs a slightly higher importance, as it's conflicting with the .list-flat styles, below.
+.list-flat [class^="importance"],
+.list-flat [class*="importance"] {
+    margin: 0 0 .3em;
+    padding: .4em 1em;
+}
+// Colours indicating the importance value of each task
+// Highest importance
+.importance-0 {
+    background: rgba($important0, .2);
+    border-left-color: $important0;
+}
+.importance-1 {
+    background: rgba($important1, .3);
+    border-left-color: $important1;
+}
+// Lowest importance
+.importance-2 {
+    background: rgba($important2, .2);
+    border-left-color: $important2;
+}
+
+.list-flat,
+.list-flat li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    //font-size: 6.2vw;
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 0;
+}
+p {margin: 0 0 1em;}
+
+// Tiny grid
+.grid {
+    display: flex;
+    & > * {flex: 1 0;}
+}
+//.grid-middle {align-items: center;}
+.grid-indented {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.text-right {text-align: right;}
+
+// Buttons are a *tiny* bit smaller than bodytext
+.btn {
+    appearance: none;
+    background: #fff;
+    border: none;
+    border-radius: 2em;
+    box-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: .8em;
+    margin: 0;
+    padding: .6em 1em;
+}
+
+// For CSS shapes
+.shape {
+    display: inline-block;
+    font-size: 10px;
+    position: relative;
+    top: .3em; // The icons are larger than the text within a .btn - may need to revisit this
+    vertical-align: top;
+
+    &:before, &:after {
+        content: "";
+        position: absolute;
+    }
+}
+
+.sh-plus, .sh-plus:before, .sh-minus, .sh-minus:before {
+    height: 2.5em;
+    margin: 0 1em;
+    width: .4em;
+}
+.sh-plus, .sh-plus:before, .sh-minus:before {
+    background: $bodytext;
+}
+	.sh-plus:before, .sh-minus:before {
+	    left: -1em;
+	}
+	.sh-plus:before, .sh-minus:before {
+	    transform: rotate(90deg);
+	}
+
+// Hiding content visually, but not from screen readers
+.sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+// A chunky checkbox, faked using pseudo-elements
+.chunky-check {
+    position: relative;
+    transition: all .5s ease;
+}
+.chunky-check:before,
+.chunky-check:after {
+    content: "";
+}
+// A white square, to hold the tick
+.chunky-check:before {
+    background: #fff;
+    box-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
+    display: inline-block;
+    height: 1.2em;
+    margin: 0 .5em 0 0;
+    position: relative;
+    top: .15em;
+    width: 1.2em;
+}
+// ✓, but invisible
+.chunky-check:after {
+    border: solid .15em transparent;
+    border-right: none;
+    border-top: none;
+    height: .4em;
+    left: .25em;
+    position: absolute;
+    top: .35em;
+    transform: rotate(0deg);
+    transition: all .5s ease;
+    width: .8em;
+}
+input:checked + .chunky-check:after {
+    border: solid .15em $bodytext;
+    border-right: none;
+    border-top: none;
+    transform: rotate(-45deg);
+}
+input:checked + .chunky-check {
+    color: rgba(0,0,0,.5);
+}

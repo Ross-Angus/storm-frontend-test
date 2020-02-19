@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<section aria-labelledby="app-title">
-			<header>
+		<section aria-labelledby="app-title" class="app">
+			<header class="grid grid-indented">
 				<h1 id="app-title">Todo list</h1>
-				<p><button type="button">Add item</button></p>
+				<p class="text-right"><button type="button" class="btn"><span class="shape sh-plus"></span> Add item</button></p>
 			</header>
-			<div data-js="tasklist">
-			</ul>
-		</main>
+			<div data-js="tasklist"></div>
+		</section>
+		<footer class="text-right">Storm <abbr title="Identification">ID</abbr></footer>
 	</body>
 </html>
