@@ -5,6 +5,10 @@ var url          = 'http://localhost:4000/api/task',
 	taskFragment = document.createElement('ul');
 
 taskFragment.className = 'list-flat';
+
+// Adds a loading indication, while the results are fetched.
+taskList.innerHTML = "<p>Loading to do list ...</p>";
+
 // Note that this will not work in any version of IE.
 fetch(url).then(function (response) {
 	return response.json();
@@ -15,7 +19,7 @@ fetch(url).then(function (response) {
 		task.innerHTML = '<input type="checkbox" class="sr-only" name="task' + i + '" id="task' + i + '"><label class="chunky-check" for="task' + i + '">' + json[i].title + '</label>';
 		taskFragment.appendChild(task);
 	}
-	// This way, the DOM is only updated once.
+	taskList.innerHTML = ''; // Remove the loading text
 	taskList.appendChild(taskFragment);
 }).catch(function (err) {
 	console.log('Fetch problem: ' + err.message);
