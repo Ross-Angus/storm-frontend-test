@@ -135,6 +135,7 @@ p {margin: 0 0 1em;}
 }
 .text-right {text-align: right;}
 .text-centre {text-align: center;}
+.pull-right {float: right;}
 
 // Buttons are a *tiny* bit smaller than bodytext
 .btn {
@@ -150,6 +151,8 @@ p {margin: 0 0 1em;}
     padding: .6em 1em;
     width: auto;
 }
+// Sometimes, buttons are WEE
+.btn-small {padding: .3em .5em;}
 
 // For CSS shapes
 .shape {
@@ -220,7 +223,7 @@ p {margin: 0 0 1em;}
         height: .4em;
         left: .25em;
         position: absolute;
-        top: .35em;
+        top: .25em;
         transform: rotate(0deg);
         transition: all .5s ease;
         width: .8em;

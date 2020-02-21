@@ -16,7 +16,7 @@
 			<form method="post" data-js="add-task-form" class="add-task-form">
 				<p class="grid">
 					<label for="task-title">Task title</label>
-					<label for="add-toggle" class="text-right">&times;</label>
+					<label for="add-toggle" class="text-right" title="Close popup" aria-label="Close popup">&times;</label>
 				</p>
 				<p><input name="task-title" id="task-title" placeholder="Please choose a sensible name for your task" required pattern="^[A-Za-z0-9 ]+$" title="Only use the latin alphabet and numbers. Sorry, buddy."></p>
 				<fieldset class="task-importance">
@@ -30,7 +30,9 @@
 				</fieldset>
 				<p><input type="submit" value="Add new task" class="btn"></p>
 			</form>
-			<div data-js="tasklist"></div>
+			<p data-js="instructions">Congratulations! You have finished all of your tasks. Either move on with your life, or create a new task, above.</p>
+			<div data-js="tasklist">
+			</div>
 		</section>
 		<footer class="text-right">Storm <abbr title="Identification">ID</abbr></footer>
 	</body>
