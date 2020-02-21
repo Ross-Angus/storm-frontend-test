@@ -2,6 +2,8 @@ $bodytext: #232323;
 $important0: #fbb3b3;
 $important1: #fce9a7;
 $important2: #b3e6fb;
+$body-width: 22em;
+$that-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
 
 @font-face {
     font-family: 'Roboto light';
@@ -36,10 +38,16 @@ body {
     font-display: swap;
     font-family: 'Roboto light',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     font-size: 2em;
-    max-width: 22em;
+    max-width: $body-width;
     margin: 0 auto;
 }
-input {font-family: inherit;}
+input {
+    display: block;
+    font-family: inherit;
+    font-size: 1em;
+    padding: .5em;
+    width: 100%;
+}
 
 *, *:before, *:after {box-sizing: border-box;}
 
@@ -59,7 +67,6 @@ footer {
     font-size: .65em;
     padding: 1em 0;
 }
-
 
 // The list items sit within these classes
 [class^="importance"],
@@ -88,6 +95,19 @@ footer {
     border-left-color: $important2;
 }
 
+// A fieldset, for selecting levels of importance
+.task-importance {
+    background: linear-gradient(270deg, rgba($important0, .2) 0%, rgba($important1, .2) 50%, rgba($important2, .2) 100%);
+    border: solid 1px $bodytext;
+    margin: 0 0 1em;
+
+    & legend {
+        background: #fff;
+        border: solid 1px $bodytext;
+        padding: .2em .5em;
+    }
+    & p:last-child {margin-bottom: 0;}
+}
 .list-flat,
 .list-flat li {
     list-style-type: none;
@@ -114,6 +134,7 @@ p {margin: 0 0 1em;}
     padding-right: 1em;
 }
 .text-right {text-align: right;}
+.text-centre {text-align: center;}
 
 // Buttons are a *tiny* bit smaller than bodytext
 .btn {
@@ -121,11 +142,13 @@ p {margin: 0 0 1em;}
     background: #fff;
     border: none;
     border-radius: 2em;
-    box-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
+    box-shadow: $that-shadow;
     cursor: pointer;
+    display: inline-block;
     font-size: .8em;
     margin: 0;
     padding: .6em 1em;
+    width: auto;
 }
 
 // For CSS shapes
@@ -173,34 +196,35 @@ p {margin: 0 0 1em;}
 .chunky-check {
     position: relative;
     transition: all .5s ease;
-}
-.chunky-check:before,
-.chunky-check:after {
-    content: "";
-}
-// A white square, to hold the tick
-.chunky-check:before {
-    background: #fff;
-    box-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
-    display: inline-block;
-    height: 1.2em;
-    margin: 0 .5em 0 0;
-    position: relative;
-    top: .15em;
-    width: 1.2em;
-}
-// ✓, but invisible
-.chunky-check:after {
-    border: solid .15em transparent;
-    border-right: none;
-    border-top: none;
-    height: .4em;
-    left: .25em;
-    position: absolute;
-    top: .35em;
-    transform: rotate(0deg);
-    transition: all .5s ease;
-    width: .8em;
+
+    &:before,
+    &:after {
+        content: "";
+    }
+    // A white square, to hold the tick
+    &:before {
+        background: #fff;
+        box-shadow: .1em .1em .3em rgba(0, 0, 0, .1);
+        display: inline-block;
+        height: 1.2em;
+        margin: 0 .5em 0 0;
+        position: relative;
+        top: .15em;
+        width: 1.2em;
+    }
+    // ✓, but invisible
+    &:after {
+        border: solid .15em transparent;
+        border-right: none;
+        border-top: none;
+        height: .4em;
+        left: .25em;
+        position: absolute;
+        top: .35em;
+        transform: rotate(0deg);
+        transition: all .5s ease;
+        width: .8em;
+    }
 }
 input:checked + .chunky-check:after {
     border: solid .15em $bodytext;
@@ -211,3 +235,30 @@ input:checked + .chunky-check:after {
 input:checked + .chunky-check {
     color: rgba(0,0,0,.5);
 }
+
+// The form which allows the user to add a new task to the list
+.add-task-form {
+    background: #fff;
+    box-shadow: $that-shadow;
+    left: 50%;
+    max-width: 100%;
+    opacity: 0;
+    padding: 1em 1em 0;
+    position: absolute;
+    top: 50%;
+    transition: all .5s ease;
+    transform: translate(-50%, -50%) scale(0, 0);
+    width: $body-width;
+    z-index: 1;
+
+    // Because 0 is the highest importance and 2 is the least important,
+    // we need to flip the orientation of the range input.
+    [id="new-task-importance"] {direction: rtl;}
+}
+// Because why use JavaScript, when Jesus gave us CSS?
+[id="add-toggle"]:checked + .add-task-form {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1, 1);
+}
+
+.small {font-size: .7em;}

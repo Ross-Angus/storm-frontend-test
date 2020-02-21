@@ -10,8 +10,26 @@
 		<section aria-labelledby="app-title" class="app">
 			<header class="grid grid-indented">
 				<h1 id="app-title">Todo list</h1>
-				<p class="text-right"><button type="button" class="btn"><span class="shape sh-plus"></span> Add item</button></p>
+				<p class="text-right"><label for="add-toggle" class="btn"><span class="shape sh-plus"></span> Add item</label></p>
 			</header>
+			<input type="checkbox" name="add-toggle" id="add-toggle" class="sr-only">
+			<form method="post" data-js="add-task-form" class="add-task-form">
+				<p class="grid">
+					<label for="task-title">Task title</label>
+					<label for="add-toggle" class="text-right">&times;</label>
+				</p>
+				<p><input name="task-title" id="task-title" placeholder="Please choose a sensible name for your task" required pattern="^[A-Za-z0-9 ]+$" title="Only use the latin alphabet and numbers. Sorry, buddy."></p>
+				<fieldset class="task-importance">
+					<legend>Task importance</legend>
+					<ol class="grid list-flat small">
+						<li>Low</li>
+						<li class="text-centre">Medium</li>
+						<li class="text-right">High</li>
+					</ol>
+					<p><input type="range" value="1" min="0" max="2" step="1" id="new-task-importance" name="new-task-importance"/></p>
+				</fieldset>
+				<p><input type="submit" value="Add new task" class="btn"></p>
+			</form>
 			<div data-js="tasklist"></div>
 		</section>
 		<footer class="text-right">Storm <abbr title="Identification">ID</abbr></footer>
