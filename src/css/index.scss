@@ -237,6 +237,13 @@ input:checked + .chunky-check:after {
 }
 input:checked + .chunky-check {
     color: rgba(0,0,0,.5);
+    outline: dotted .1em transparent;
+}
+
+// You know, for accessibility...
+input:focus + .chunky-check,
+input:hover + .chunky-check {
+    outline: dotted .1em rgba($bodytext,.5);
 }
 
 // The form which allows the user to add a new task to the list
