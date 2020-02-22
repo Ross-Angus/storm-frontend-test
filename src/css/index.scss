@@ -97,7 +97,7 @@ footer {
 
 // A fieldset, for selecting levels of importance
 .task-importance {
-    background: linear-gradient(270deg, rgba($important0, .2) 0%, rgba($important1, .2) 50%, rgba($important2, .2) 100%);
+    background: linear-gradient(270deg, rgba($important0, .3) 0%, rgba($important1, .3) 50%, rgba($important2, .3) 100%);
     border: solid 1px $bodytext;
     margin: 0 0 1em;
 
@@ -122,6 +122,7 @@ h1 {
     margin: 0;
 }
 p {margin: 0 0 1em;}
+label {cursor: pointer;}
 
 // Tiny grid
 .grid {
@@ -223,7 +224,7 @@ p {margin: 0 0 1em;}
         height: .4em;
         left: .25em;
         position: absolute;
-        top: .25em;
+        top: .35em;
         transform: rotate(0deg);
         transition: all .5s ease;
         width: .8em;
@@ -238,11 +239,14 @@ input:checked + .chunky-check:after {
 input:checked + .chunky-check {
     color: rgba(0,0,0,.5);
     outline: dotted .1em transparent;
+    outline-offset: .2em;
 }
 
 // You know, for accessibility...
 input:focus + .chunky-check,
-input:hover + .chunky-check {
+input:hover + .chunky-check,
+// To reflect the focus state of the checkbox which controls the add form
+[id="add-toggle"]:focus + header [for="add-toggle"] {
     outline: dotted .1em rgba($bodytext,.5);
 }
 
@@ -266,7 +270,7 @@ input:hover + .chunky-check {
     [id="new-task-importance"] {direction: rtl;}
 }
 // Because why use JavaScript, when Jesus gave us CSS?
-[id="add-toggle"]:checked + .add-task-form {
+[id="add-toggle"]:checked ~ .add-task-form {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1, 1);
 }

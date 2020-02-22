@@ -9,6 +9,7 @@ var url          = 'http://localhost:4000/api/task',
 taskFragment.className = 'list-flat';
 // Adds a loading indication, while the results are fetched.
 taskList.innerHTML = "<p>Loading to do list ...</p>";
+instructions.style.display = 'none';
 
 // Writes the whole task list to the DOM
 function updateUI() {
